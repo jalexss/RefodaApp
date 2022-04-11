@@ -6,8 +6,38 @@ Notas constructivas
 
 // Como hacer un commit en github
 
--> para iniciar por primera vez el repositorio del proyecto
+-> para iniciar por primera vez el repositorio del proyecto en la raiz del proyecto c://user/proyecto/proyecto-X
 
-** 
+…or create a new repository on the command line
+echo "# RefodaApp" >> README.md
+
+
+** git init
+
+** git add README.md
+
+** git commit -m "first commit"
+
+** git branch -M main
+
+** git remote add origin https://github.com/jalexss/RefodaApp.git
+
+** git push -u origin main
+
+
+
+…or push an existing repository from the command line
+
+
+** git remote add origin https://github.com/jalexss/RefodaApp.git
+
+** git branch -M main
+
+** git push -u origin main
+
+
+////////////////////////
+
+//
 
 
