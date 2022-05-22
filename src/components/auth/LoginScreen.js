@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 import { useForm } from '../../hooks/useForm';
 import { startLogin } from '../../actions/auth';
@@ -8,7 +8,7 @@ import { startLogin } from '../../actions/auth';
 export const LoginScreen = () => {
 
 	const dispatch = useDispatch();
-	let navigate = useNavigate();
+	//let navigate = useNavigate();
 
 	const [ formLoginValues, handleLoginInputChange ] = useForm({
         username: 'jalexss',
@@ -21,7 +21,7 @@ export const LoginScreen = () => {
         e.preventDefault();
 
         dispatch( startLogin( username, password ) );
-        navigate("../dashboard")
+        //navigate("../dashboard")
     }
 
 	return (

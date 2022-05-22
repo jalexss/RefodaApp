@@ -7,7 +7,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 
 //screens imports 
-import { Dashboard } from '../components/refoda/Dashboard'
+import { Home } from '../components/refoda/Home'
 import { RefodaScreen } from '../components/refoda/RefodaScreen';
 import { ConfirmEmailScreen } from '../components/auth/ConfirmEmailScreen';
 import { LoginScreen } from '../components/auth/LoginScreen';
@@ -24,7 +24,7 @@ export const AppRouter = () => {
 	const dispatch = useDispatch();
   const { checking, uid } = useSelector( state => state.auth );
   console.log('uid en app router -->', uid);
-  
+
   useEffect(() => {
 
 		dispatch( startChecking() );
@@ -35,66 +35,72 @@ export const AppRouter = () => {
   }
 
 	return (
-	
-			<BrowserRouter>
-				<div>
-					<Routes>
-						<Route path="/" element={<RefodaScreen />}  />
-						
-						{/* RUTAS PUBLICAS*/}
+		<BrowserRouter>
+			<div>
+				<Routes>
 
-						<Route 
-							path="/login" 
-							element={
-									<PublicRoute uid={uid} >
-										<LoginScreen />
-									</PublicRoute>
-								}  
-							/>
+					{/* RUTAS PUBLICAS*/}
 
-						<Route 
-							path="/register" 
-							element={
+					<Route 
+						path="/welcome" element={
+							<PublicRoute uid={uid} >
+									<RefodaScreen />
+							</PublicRoute>
+						}  
+					/>
+
+					<Route 
+						path="/login" 
+						element={
 								<PublicRoute uid={uid} >
-									<RegisterScreen />
+									<LoginScreen />
 								</PublicRoute>
 							}  
 						/>
 
-						<Route 
-							path="/reset-password" 
-							element={
-								<PublicRoute uid={uid} >
-									<ResetPasswordScreen />
-								</PublicRoute>
-							}  
-						/>
+					<Route 
+						path="/register" 
+						element={
+							<PublicRoute uid={uid} >
+								<RegisterScreen />
+							</PublicRoute>
+						}  
+					/>
 
-						{/*RUTAS PRIVADAS*/}
+					<Route 
+						path="/reset-password" 
+						element={
+							<PublicRoute uid={uid} >
+								<ResetPasswordScreen />
+							</PublicRoute>
+						}  
+					/>
 
-						<Route 
-							path="/dashboard" 
-							element={
-								<PrivateRoute uid={uid} >
-									<Dashboard />
-								</PrivateRoute>
-							}
-						/>			
+					{/*RUTAS PRIVADAS*/}
 
-						<Route 
-							path="/confirm/:id" 
-							element={
-								<PrivateRoute uid={uid} >
-									<ConfirmEmailScreen />
-								</PrivateRoute>
-							} 
-						/>
+					<Route 
+						path="/" 
+						element={
+							<PrivateRoute uid={uid} >
+								<Home />
+							</PrivateRoute>
+						}
+					/>			
 
-						{/*Redireccionamiento de rutas inexistentes*/}
-						<Route path="/*" element={<RefodaScreen />}  />
-					</Routes>
-				</div>
-			</BrowserRouter>		
+					<Route 
+						path="/confirm/:uid" 
+						element={
+							<PrivateRoute uid={uid} >
+								<ConfirmEmailScreen />
+							</PrivateRoute>
+						} 
+					/>
+
+					{/*Redireccionamiento de rutas inexistentes*/}
+					<Route path="/*" element={<RefodaScreen />}  />
+				</Routes>
+			</div>
+		</BrowserRouter>		
 	)
 }
 
