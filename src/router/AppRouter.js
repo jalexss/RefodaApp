@@ -23,7 +23,6 @@ export const AppRouter = () => {
 
 	const dispatch = useDispatch();
   const { checking, uid } = useSelector( state => state.auth );
-  console.log('uid en app router -->', uid);
 
   useEffect(() => {
 

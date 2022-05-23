@@ -19,7 +19,7 @@ export const startLogin = ( username, password ) => {
 
             dispatch( login({
                 uid: body.uid,
-                username: body.name
+                username: body.username
             }),
             console.log(login) )
         } else {
@@ -42,7 +42,7 @@ export const startRegister = ( email, password, username ) => {
 
             dispatch( login({
                 uid: body.uid,
-                username: body.name
+                username: body.username
             }) )
         } else {
             Swal.fire('Error', body.msg, 'error');
