@@ -17,7 +17,7 @@ export const Navbar = () => {
 		<>
 			<nav className="navbar bg-dark">
 			  <div className="container-fluid">
-			    <a className="navbar-brand">Navbar</a>
+			    <a href="/*" className="navbar-brand">Navbar</a>
 
 			    <span className="navbar-text">
 					{ username }

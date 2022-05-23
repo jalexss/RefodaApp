@@ -8,7 +8,9 @@ export const RecetasIndex = ({ title, username, ingredients, instructions, step_
 				<div className="card text-white bg-dark">
 					<div className="card-header">
 						<strong> { title } </strong>
-						<span> { username } </span>
+						<br/>
+						<span> { username } </span> {/*TODO: HACER QUE SE MUESTREN LOS NOMBRES DE USUARIOS NO LOS ID*/}
+						<br/>
 						{ 
 					
 						(ingredients.length > 0) ? (<h1>{ ingredients }</h1>) : (<p>NADA...</p>)
@@ -19,7 +21,6 @@ export const RecetasIndex = ({ title, username, ingredients, instructions, step_
 						<h4 className="card-title">{instructions}</h4>
 						<p className="card-text">{step_By_Step}</p>
 						<p className="card-text">{ notes }</p>
-						<p className="card-text">{ step_By_Step }</p>
 						<h1 className="text-info">{ createdAt }</h1>
 						<h1 className="text-info">{ updatedAt }</h1>
 					</div>

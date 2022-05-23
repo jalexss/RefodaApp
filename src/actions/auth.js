@@ -40,7 +40,7 @@ export const startRegister = ( email, password, username ) => {
             localStorage.setItem('token', body.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
 
-            dispatch( login({
+            dispatch( login({ //TODO: HACER QUE HAGA UN navigate() a confirmarEmail
                 uid: body.uid,
                 username: body.username
             }) )
@@ -73,9 +73,8 @@ export const startChecking = () => {
                 )
             }
         } else {
-            //Swal.fire('Error', body.msg, 'error');
+
             dispatch( checkingFinish() );
-            //localStorage.clear();
         }
     }
 }
