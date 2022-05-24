@@ -14,6 +14,14 @@ export const recetaReducer = ( state = initialState, action ) => {
 				recetas: [ ...action.payload ]
 			}
 
+		case types.recetaAddNew:
+			return {
+				...state,
+				receta: [
+					action.payload
+				]
+			}
+
 		default:
 			return state;
 	}

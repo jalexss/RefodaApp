@@ -10,6 +10,8 @@ export const recetasStartLoading = () => {
 			const resp = await fetchConToken( 'recetas' );
 			const body = await resp.json();
 
+			console.log(body)
+
 			dispatch( recetaLoaded( body.recetas ) );
 		} catch (error) {
 
@@ -30,6 +32,8 @@ export const recetaStartAddNew = ( receta ) => {
 
 		const { uid, username } = getState().auth;
 
+		console.log(username)
+
 		try {
 
 			const resp = await fetchConToken('recetas', receta, 'POST');
@@ -43,6 +47,9 @@ export const recetaStartAddNew = ( receta ) => {
             		_id: uid,
             		username: username
             	}
+
+            	console.log('receta despues', receta)
+            	console.log(recetaAddNew(receta))
 
             	dispatch( recetaAddNew( receta ));
             } else {

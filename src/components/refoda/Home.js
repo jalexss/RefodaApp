@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Navbar } from '../ui/Navbar'
-import { RecetasIndex } from './RecetasIndex'
+import { CreateRecetaButton } from '../ui/CreateRecetaButton'
+import { RecetasIndex } from '../receta/RecetasIndex'
 import { recetasStartLoading } from '../../actions/recetas'
 
 export const Home = () => {
@@ -23,6 +24,9 @@ export const Home = () => {
 
 			<div className="container flex">
 				<p className="text">Recetas</p>
+
+				<CreateRecetaButton />
+
 				{ 
 					recetas.map( receta => (
 						<RecetasIndex
@@ -32,7 +36,7 @@ export const Home = () => {
 					))
 				}
 			</div>
-			
+
 		</>
 	)
 }

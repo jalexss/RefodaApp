@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const RecetasIndex = ({ title, username, ingredients, instructions, step_By_Step, notes, createdAt, updatedAt }) => {
+export const RecetasIndex = ({ title, usuario, ingredients, instructions, step_By_Step, notes, createdAt, updatedAt }) => {
 
 	return (
 		<div className="container ">
@@ -9,7 +9,7 @@ export const RecetasIndex = ({ title, username, ingredients, instructions, step_
 					<div className="card-header">
 						<strong> { title } </strong>
 						<br/>
-						<span> { username } </span> {/*TODO: HACER QUE SE MUESTREN LOS NOMBRES DE USUARIOS NO LOS ID*/}
+						<span> { usuario.username } </span>
 						<br/>
 						{ 
 					
