@@ -1,6 +1,11 @@
 import React from 'react'
+import moment from 'moment'
 
 export const RecetasIndex = ({ title, usuario, ingredients, instructions, step_By_Step, notes, createdAt, updatedAt }) => {
+
+	const dateCreated = moment(createdAt).fromNow();//.format('DD MMM, YYYY');
+	const dateUpdated = moment(updatedAt).fromNow();//.format('DD MMM, YYYY');
+
 
 	return (
 		<div className="container ">
@@ -21,8 +26,8 @@ export const RecetasIndex = ({ title, usuario, ingredients, instructions, step_B
 						<h4 className="card-title">{instructions}</h4>
 						<p className="card-text">{step_By_Step}</p>
 						<p className="card-text">{ notes }</p>
-						<h1 className="text-info">{ createdAt }</h1>
-						<h1 className="text-info">{ updatedAt }</h1>
+						<h1 className="text-info">{ dateCreated }</h1>
+						<h1 className="text-info">{ dateUpdated }</h1>
 					</div>
 				</div>
 			</div>
