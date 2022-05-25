@@ -12,7 +12,6 @@ export const startLogin = ( username, password ) => {
         const body = await resp.json();
         console.log('body en start login',body);
 
-
         if( body.ok ) {
             localStorage.setItem('token', body.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
@@ -20,13 +19,10 @@ export const startLogin = ( username, password ) => {
             dispatch( login({
                 uid: body.uid,
                 username: body.username
-            }),
-            console.log(login) )
+            }))
         } else {
             Swal.fire('Error', body.msg, 'error');
         }
-        
-
     }
 }
 
@@ -47,8 +43,6 @@ export const startRegister = ( email, password, username ) => {
         } else {
             Swal.fire('Error', body.msg, 'error');
         }
-
-
     }
 }
 
@@ -86,7 +80,6 @@ const login = ( usuario ) => ({
 	type: types.authLogin,
 	payload: usuario
 })
-
 
 export const startLogout = () => {
     return( dispatch ) => {

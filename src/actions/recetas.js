@@ -10,8 +10,6 @@ export const recetasStartLoading = () => {
 			const resp = await fetchConToken( 'recetas' );
 			const body = await resp.json();
 
-			console.log(body)
-
 			dispatch( recetaLoaded( body.recetas ) );
 		} catch (error) {
 
@@ -32,13 +30,10 @@ export const recetaStartAddNew = ( receta ) => {
 
 		const { uid, username } = getState().auth;
 
-		console.log(username)
-
 		try {
 
 			const resp = await fetchConToken('recetas', receta, 'POST');
             const body = await resp.json(); 
-            console.log(body);
 
             if( body.ok ) {
 
@@ -47,9 +42,6 @@ export const recetaStartAddNew = ( receta ) => {
             		_id: uid,
             		username: username
             	}
-
-            	console.log('receta despues', receta)
-            	console.log(recetaAddNew(receta))
 
             	dispatch( recetaAddNew( receta ));
             } else {
@@ -68,4 +60,39 @@ const recetaAddNew = (receta) => ({
 	
 	type: types.recetaAddNew,
 	payload: receta
+})
+
+export const recetaStartUpdate = ( receta ) => {
+	return async ( dispatch ) => {
+		try {
+
+			const resp = await fetchConToken(`recetas/${ receta._id }`, receta, 'PUT');
+            const body = await resp.json();
+
+            if( body.ok ) {
+
+            	dispatch( recetaUpdated( receta ))
+            } else {
+
+            	Swal.fire('Error', body.msg, 'error');
+            }
+		}catch (error) {
+			console.log(error);
+		}
+	}
+}
+
+const recetaUpdated = ( receta ) => ({
+	type: types.recetaUpdated,
+	payload: receta
+})
+
+
+export const recetaSetActive = ( id, receta ) => ({
+	type: types.recetaSetActive,
+	payload: receta
+})
+
+export const recetaClearActiveReceta = () => ({
+	type: types.recetaClearActiveReceta
 })

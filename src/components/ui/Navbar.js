@@ -6,7 +6,7 @@ import { startLogout } from '../../actions/auth'
 export const Navbar = () => {
 
 	const dispatch = useDispatch();
-	const { username } = useSelector( state => state.auth );
+	const usuario = useSelector( state => state.auth );
 
 	const handleLogout = () => {
 
@@ -17,11 +17,7 @@ export const Navbar = () => {
 		<>
 			<nav className="navbar bg-dark">
 			  <div className="container-fluid">
-			    <a href="/*" className="navbar-brand">Navbar</a>
-
-			    <span className="navbar-text">
-					{ username }
-				</span>
+			    <a href="/*" className="navbar-brand">{ usuario.username }</a> {/* TODO: QUE SE PUEDA IR A /PROFILE*/}
 
 			    <form className="d-flex" role="search">
 			      <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>

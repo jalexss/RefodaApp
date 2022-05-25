@@ -2,6 +2,7 @@ import { types } from '../types/types'
 
 const initialState = {
 	recetas: [],
+	activeReceta: null
 }
 
 export const recetaReducer = ( state = initialState, action ) => {
@@ -21,6 +22,26 @@ export const recetaReducer = ( state = initialState, action ) => {
 					action.payload
 				]
 			}
+
+		case types.recetaUpdated:
+			return {
+				...state,
+				receta: state.recetas.map(
+					e=> ( e.id === action.payload.id ) ? action.payload :e
+				)
+			}
+
+		case types.recetaSetActive:
+			return {
+				...state,
+				activeReceta: action.payload
+			}
+
+		case types.recetaClearActiveReceta:
+        return {
+            ...state,
+            activeReceta: null
+        }
 
 		default:
 			return state;
