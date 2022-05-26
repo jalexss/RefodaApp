@@ -16,10 +16,9 @@ import { ResetPasswordScreen } from '../components/auth/ResetPasswordScreen';
 import { startChecking } from '../actions/auth' 
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
-import { RecetaForm } from '../components/receta/RecetaForm';
 
 //
-// ruta /CES Y /RPS TEMPORALES HASTA QUE SEPA COMO ANIDAR RUTAS
+//TODO: ruta /CES Y /RPS TEMPORALES HASTA QUE SEPA COMO ANIDAR RUTAS
 export const AppRouter = () => {
 
 	const dispatch = useDispatch();
@@ -92,15 +91,6 @@ export const AppRouter = () => {
 						element={
 							<PrivateRoute uid={uid} >
 								<ConfirmEmailScreen />
-							</PrivateRoute>
-						} 
-					/>
-
-					<Route 
-						path="/create-receta" 
-						element={
-							<PrivateRoute uid={uid} >
-								<RecetaForm />
 							</PrivateRoute>
 						} 
 					/>

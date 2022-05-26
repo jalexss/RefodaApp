@@ -6,7 +6,7 @@ export const types = {
 	recetaAddNew: '[receta] Add new',
 	recetaStartAddNew: '[receta] Start add new',
 	recetaSetActive: '[receta] Set Active',
-	recetaClearActiveEvent: '[receta] Clear active receta',
+	recetaClearActiveReceta: '[receta] Clear active receta',
 	recetaUpdated: '[receta] Receta updated',
     recetaDeleted: '[receta] Receta deleted',//
     recetaLoaded: '[receta] Receta loaded',

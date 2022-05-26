@@ -66,7 +66,7 @@ export const recetaStartUpdate = ( receta ) => {
 	return async ( dispatch ) => {
 		try {
 
-			const resp = await fetchConToken(`recetas/${ receta._id }`, receta, 'PUT');
+			const resp = await fetchConToken(`recetas/${ receta.id }`, receta, 'PUT');
             const body = await resp.json();
 
             if( body.ok ) {
@@ -88,7 +88,7 @@ const recetaUpdated = ( receta ) => ({
 })
 
 
-export const recetaSetActive = ( id, receta ) => ({
+export const recetaSetActive = ( receta ) => ({
 	type: types.recetaSetActive,
 	payload: receta
 })

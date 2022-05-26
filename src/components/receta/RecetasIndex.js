@@ -3,27 +3,28 @@ import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { recetaSetActive } from '../../actions/recetas'
+import { uiOpenModal } from '../../actions/ui'
 
 export const RecetasIndex = ({ id, title, usuario, ingredients, instructions, step_By_Step, notes, createdAt, updatedAt }) => {
 
 	const dispatch = useDispatch();
-	const { events, activeEvent } = useSelector( state => state.recetas );
+	const { activeReceta:receta } = useSelector( state => state.recetas );
 	//console.log(useSelector( state => state.recetas ))
-	console.log(id);
+	//console.log( receta );
 
 	const dateCreated = moment(createdAt).fromNow();//.format('DD MMM, YYYY');
 	const dateUpdated = moment(updatedAt).fromNow();
 
 	const onClickUpdateReceta = () => {
 
-		//e.preventDefault();
+		dispatch( uiOpenModal() );
+
 		dispatch( 
 
-			recetaSetActive( id, {
-				title, usuario, ingredients, instructions, step_By_Step, notes, createdAt, updatedAt
+			recetaSetActive({
+				id, title, usuario, ingredients, instructions, step_By_Step, notes, createdAt, updatedAt
 			}) 
 		);
-		console.log('hola')
 	}
 
 
