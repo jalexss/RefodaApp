@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 
 import { uiCloseModal } from '../../actions/ui';
 import { recetaStartAddNew, recetaClearActiveReceta, recetaStartUpdate } from '../../actions/recetas'
+import { recetasStartLoading } from '../../actions/recetas'
 
 const customStyles = {
   content: {
@@ -49,39 +50,43 @@ export const RecetaModal = () => {
 
 	useEffect( () => {
 
-    	if ( activeReceta ) {
-        	setFormValues( activeReceta );
-      	} else {
-        	setFormValues( initReceta );
-      	}
-  	}, [ activeReceta, setFormValues])
+  	if ( activeReceta ) {
+    	setFormValues( activeReceta );
+  	} else {
+    	setFormValues( initReceta );
+  	}
+  	
+	}, [ activeReceta, setFormValues])
 
 	const handleInputChange = ({ target }) => {
-      setFormValues({
-          ...formValues,
-          [target.name]: target.value
-      });
-  	}
+
+    setFormValues({
+      ...formValues,
+      [target.name]: target.value
+    });
+  }
 	const closeModal = () => {
 
-      dispatch( uiCloseModal() );
-      dispatch( recetaClearActiveReceta() );
-      setFormValues( initReceta );
-  	}
+    dispatch( uiCloseModal() );
+    dispatch( recetaClearActiveReceta() );
+    setFormValues( initReceta );
+	}
 
-  	const handleSubmitForm = ( e ) => {
+	const handleSubmitForm = ( e ) => {
 
-  		e.preventDefault();
+		e.preventDefault();
 
-  		if ( activeReceta ) {
-  			dispatch ( recetaStartUpdate( formValues ));
-  		} else {
-  			dispatch ( recetaStartAddNew( formValues ));
-  		}
+		if ( activeReceta ) {
 
-  		closeModal();
-  	}
- 
+			dispatch ( recetaStartUpdate( formValues ));
+		} else {
+
+			dispatch ( recetaStartAddNew( formValues ));
+		}
+
+		closeModal();
+	}
+
 	return (
 
 		<Modal
@@ -167,11 +172,11 @@ export const RecetaModal = () => {
 			  	</div>
 
 				<button 
-	            	type="submit"
-	                className="btnPrimary" // cambiar 
-	            >
-	            	submit
-	            </button>
+        	type="submit"
+          className="btnPrimary" // cambiar 
+        >
+        	submit
+        </button>
 			</form>
 		</Modal>
 	)

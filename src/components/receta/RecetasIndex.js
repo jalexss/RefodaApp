@@ -2,15 +2,14 @@ import React from 'react'
 import moment from 'moment'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { recetaSetActive } from '../../actions/recetas'
+import { recetaSetActive, recetaStartDelete, recetaClearActiveReceta } from '../../actions/recetas'
 import { uiOpenModal } from '../../actions/ui'
+import { showDeleteAlert } from '../../helpers/SweetAlertCustom'
 
 export const RecetasIndex = ({ id, title, usuario, ingredients, instructions, step_By_Step, notes, createdAt, updatedAt }) => {
 
 	const dispatch = useDispatch();
 	const { activeReceta:receta } = useSelector( state => state.recetas );
-	//console.log(useSelector( state => state.recetas ))
-	//console.log( receta );
 
 	const dateCreated = moment(createdAt).fromNow();//.format('DD MMM, YYYY');
 	const dateUpdated = moment(updatedAt).fromNow();
@@ -25,6 +24,23 @@ export const RecetasIndex = ({ id, title, usuario, ingredients, instructions, st
 				id, title, usuario, ingredients, instructions, step_By_Step, notes, createdAt, updatedAt
 			}) 
 		);
+	}
+
+	const onClickDeleteReceta = async(e) => {
+
+		e.preventDefault();
+
+		dispatch( recetaSetActive({ id }) );
+
+		const result = await showDeleteAlert();
+
+		if (result.isConfirmed) { 
+			
+			dispatch( recetaStartDelete() );
+			return dispatch( recetaClearActiveReceta() );
+		}
+
+		dispatch( recetaClearActiveReceta() );
 	}
 
 
@@ -58,6 +74,7 @@ export const RecetasIndex = ({ id, title, usuario, ingredients, instructions, st
 					> update </button>
 					<button
 						className="btn btn-outline-danger"
+						onClick={ onClickDeleteReceta }
 					> delete </button>
 				</div>
 			</div>

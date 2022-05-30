@@ -6,6 +6,7 @@ import { RecetasIndex } from '../receta/RecetasIndex'
 import { recetasStartLoading } from '../../actions/recetas'
 import { RecetaModal } from '../receta/RecetaModal'
 import { uiOpenModal } from '../../actions/ui'
+//import { comentarioStartLoading } from '../../actions/comentarios/comentarioStartLoading'
 
 export const Home = () => {
 
@@ -16,6 +17,7 @@ export const Home = () => {
 	useEffect(() => {
 		
 		dispatch( recetasStartLoading() );
+		//console.log(dispatch(recetasStartLoading))
 	}, [dispatch]);
 
 	const ClickNewReceta = ( e ) => {

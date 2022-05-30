@@ -2,6 +2,8 @@ import { types } from '../types/types'
 import Swal from 'sweetalert2'
 
 import { fetchConToken } from '../helpers/fetch'
+import { showDeleteSuccessAlert } from '../helpers/SweetAlertCustom'
+//import { comentarioStartLoading } from './comentarioStartLoading'
 
 export const recetasStartLoading = () => {
 	return async (dispatch) => {
@@ -11,6 +13,8 @@ export const recetasStartLoading = () => {
 			const body = await resp.json();
 
 			dispatch( recetaLoaded( body.recetas ) );
+			// permite obtener los comentarios cuando lleguen las recetas
+			//dispatch( comentarioStartLoading() );
 		} catch (error) {
 
 			console.log(error);
@@ -87,7 +91,6 @@ const recetaUpdated = ( receta ) => ({
 	payload: receta
 })
 
-
 export const recetaSetActive = ( receta ) => ({
 	type: types.recetaSetActive,
 	payload: receta
@@ -96,3 +99,32 @@ export const recetaSetActive = ( receta ) => ({
 export const recetaClearActiveReceta = () => ({
 	type: types.recetaClearActiveReceta
 })
+
+export const recetaStartDelete = () => {
+    return async ( dispatch, getState ) => {
+
+        const { id } = getState().recetas.activeReceta;
+
+         try {
+           
+            const resp = await fetchConToken(`recetas/${ id }`, {}, 'DELETE');
+            const body = await resp.json();
+
+
+            if ( body.ok ) {
+            	
+            	showDeleteSuccessAlert();
+                dispatch( recetaDeleted() );
+                
+            } else {
+                Swal.fire('Error', body.msg, 'error');
+            }
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+
+const recetaDeleted = () => ({ type: types.recetaDeleted });

@@ -10,7 +10,15 @@ export const types = {
 	recetaUpdated: '[receta] Receta updated',
     recetaDeleted: '[receta] Receta deleted',//
     recetaLoaded: '[receta] Receta loaded',
-    /*eventLogout: '[event] Event Logout',*/
+    /*recetaLogout: '[receta] Receta logout',*/
+
+    comentarioAddNew: '[comentario] Add new',
+    comentarioStartAddNew: '[comentario] Start add new',
+    comentarioSetActive: '[comentario] Set Active',
+    comentarioClearActiveComentario: '[comentario] Clear active comentario',
+    comentarioUpdated: '[comentario] Comentario updated',
+    comentarioLoaded: '[comentario] Comentario loaded',
+    /*comentarioLogout: '[comentario] Comentario logout',*/
     
     authCheckingFinish: '[auth] Finish checking login state',
     authStartLogin: '[auth] Start login',
