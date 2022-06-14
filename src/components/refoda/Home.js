@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Navbar } from '../ui/Navbar'
+//import { Navbar } from '../ui/Navbar'
+import { PrimarySearchAppBar } from '../ui/NavbarMUI'
 import { RecetasIndex } from '../receta/RecetasIndex'
 import { recetasStartLoading } from '../../actions/recetas'
 import { RecetaModal } from '../receta/RecetaModal'
 import { uiOpenModal } from '../../actions/ui'
-//import { comentarioStartLoading } from '../../actions/comentarios/comentarioStartLoading'
+//import { comentarioStartLoading } from '../../actions/comentarios'
 
 export const Home = () => {
 
@@ -18,6 +19,7 @@ export const Home = () => {
 		
 		dispatch( recetasStartLoading() );
 		//console.log(dispatch(recetasStartLoading))
+		//dispatch( comentarioStartLoading() );
 	}, [dispatch]);
 
 	const ClickNewReceta = ( e ) => {
@@ -28,7 +30,7 @@ export const Home = () => {
 
 	return (
 		<>
-			<Navbar />
+			<PrimarySearchAppBar />
 
 			<h1>HomeView</h1>
 			<button

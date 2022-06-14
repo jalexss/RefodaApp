@@ -55,7 +55,7 @@ export const RecetasIndex = ({ id, title, usuario, ingredients, instructions, st
 						<br/>
 						{ 
 					
-							(ingredients.length > 0) 
+							(ingredients.length !== 0) 
 								? (<h1 className="card-text">{ ingredients }</h1>) 
 								: (<p className="text-info">NADA...</p>)
 						

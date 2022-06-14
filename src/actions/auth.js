@@ -10,7 +10,6 @@ export const startLogin = ( username, password ) => {
 
         const resp = await fetchSinToken( 'auth', { username, password }, 'POST' );
         const body = await resp.json();
-        console.log('body en start login',body);
 
         if( body.ok ) {
             localStorage.setItem('token', body.token );
@@ -18,7 +17,9 @@ export const startLogin = ( username, password ) => {
 
             dispatch( login({
                 uid: body.uid,
-                username: body.username
+                username: body.username,
+                roles: body.roles,
+                avatar: body.avatar,
             }))
         } else {
             Swal.fire('Error', body.msg, 'error');
@@ -38,7 +39,9 @@ export const startRegister = ( email, password, username ) => {
 
             dispatch( login({ //TODO: HACER QUE HAGA UN navigate() a confirmarEmail
                 uid: body.uid,
-                username: body.username
+                username: body.username,
+                roles: body.roles,
+                avatar: body.avatar,
             }) )
         } else {
             Swal.fire('Error', body.msg, 'error');
@@ -62,7 +65,9 @@ export const startChecking = () => {
                 dispatch( 
                     login({
                         uid: body.uid,
-                        username: body.username
+                        username: body.username,
+                        roles: body.roles,
+                        avatar: body.avatar,
                     }) 
                 )
             }

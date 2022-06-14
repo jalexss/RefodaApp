@@ -3,7 +3,7 @@ import Swal from 'sweetalert2'
 
 import { fetchConToken } from '../helpers/fetch'
 import { showDeleteSuccessAlert } from '../helpers/SweetAlertCustom'
-//import { comentarioStartLoading } from './comentarioStartLoading'
+import { comentarioStartLoading } from './comentarios'
 
 export const recetasStartLoading = () => {
 	return async (dispatch) => {
@@ -11,10 +11,22 @@ export const recetasStartLoading = () => {
 		try{
 			const resp = await fetchConToken( 'recetas' );
 			const body = await resp.json();
+			const recetas = body.recetas;
+			console.log(recetas.length)
 
-			dispatch( recetaLoaded( body.recetas ) );
+			for (let i = 1; i > recetas.length ; i++) {
+				dispatch( comentarioStartLoading(recetas[i].id) );
+			}
+
+			dispatch( recetaLoaded( recetas ) );
+			
+			
 			// permite obtener los comentarios cuando lleguen las recetas
-			//dispatch( comentarioStartLoading() );
+			//if( body.recetas.length > 0 ){
+
+			//	
+			//}
+	
 		} catch (error) {
 
 			console.log(error);

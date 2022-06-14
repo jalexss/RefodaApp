@@ -2,6 +2,8 @@ export const types = {
 
 	uiOpenModal: '[ui] Open modal',
 	uiCloseModal: '[ui] Close modal',
+    uiOpenActiveUI: '[ui] open UI',
+    uiCloseActiveUI: '[ui] close UI',
 
 	recetaAddNew: '[receta] Add new',
 	recetaStartAddNew: '[receta] Start add new',
