@@ -7,7 +7,7 @@ export const theme = createTheme({
 			// editable opciones light, dark, contrastText
 			// por defecto se ajustan con el main( color )
 	     	// light: will be calculated from palette.primary.main,
-	     	main: '#00e676',
+	     	main: '#3eef97',
 	     	// dark: will be calculated from palette.primary.main,
 	     	// contrastText: will be calculated to contrast with palette.primary.main
 	    },
@@ -23,4 +23,7 @@ export const theme = createTheme({
 	    // E.g., shift from Red 500 to Red 300 or Red 700.
 	    tonalOffset: 0.2,
 	},
+
+ 	//spacing: [0, 4, 8, 16, 32, 64],
+
 });

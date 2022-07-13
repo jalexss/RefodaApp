@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2'
+import moment from 'moment'
 //import { Navigate } from "react-router-dom";
 
 import { fetchSinToken, fetchConToken } from '../helpers/fetch'
@@ -11,7 +12,10 @@ export const startLogin = ( username, password ) => {
         const resp = await fetchSinToken( 'auth', { username, password }, 'POST' );
         const body = await resp.json();
 
+        //const TimeStartToken = moment(new Date().getTime()).format('HH');
+        //console.log(TimeStartToken)
         if( body.ok ) {
+            
             localStorage.setItem('token', body.token );
             localStorage.setItem('token-init-date', new Date().getTime() );
 
@@ -20,6 +24,8 @@ export const startLogin = ( username, password ) => {
                 username: body.username,
                 roles: body.roles,
                 avatar: body.avatar,
+                email: body.email,
+                status: body.status
             }))
         } else {
             Swal.fire('Error', body.msg, 'error');
@@ -55,6 +61,7 @@ export const startChecking = () => {
         const tokenVerify = localStorage.getItem('token')
         
         if(tokenVerify){
+
             const resp = await fetchConToken( 'auth/renew' );
             const body = await resp.json();
 
@@ -68,6 +75,8 @@ export const startChecking = () => {
                         username: body.username,
                         roles: body.roles,
                         avatar: body.avatar,
+                        email: body.email,
+                        status: body.status
                     }) 
                 )
             }

@@ -14,6 +14,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import Avatar from '@mui/material/Avatar';
 
 import { theme } from '../../helpers/customThemeMUI'
 import { startLogout } from '../../actions/auth'
@@ -64,6 +65,10 @@ export const  PrimarySearchAppBar = () => {
 
   const dispatch = useDispatch();
   const usuario = useSelector( state => state.auth );
+  console.log('en navbar --->', usuario)
+
+  const urlUserFiles = process.env.REACT_APP_USER_FILE_URL;
+  const avatarPath = `${urlUserFiles}/${usuario.uid}/${usuario.avatar}`;
 
   const [anchorEl, setAnchorEl] = React.useState(false);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -73,8 +78,8 @@ export const  PrimarySearchAppBar = () => {
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log('asdasdsa22222')
-    console.log(setAnchorEl(event.currentTarget))
+    const data = new FormData(event.currentTarget);
+    console.log(data)
     console.log(anchorEl)
   };
 
@@ -119,7 +124,12 @@ export const  PrimarySearchAppBar = () => {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Probando</MenuItem>
+      <MenuItem onClick={handleMenuOptionOne}>
+        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+          <LogoutRoundedIcon />
+        </IconButton>
+        Logout
+      </MenuItem>
     </Menu>
   );
 
@@ -167,6 +177,19 @@ export const  PrimarySearchAppBar = () => {
         </IconButton>
         <p>Logout</p>
       </MenuItem>
+
+      <MenuItem
+        onClick={ handleMenuOptionOne }
+      >
+        <IconButton 
+          size="large" 
+          aria-label="avatar" 
+          color="inherit"
+        >
+          <Avatar alt={ usuario.username.toUpperCase() } src={ avatarPath }/>
+        </IconButton>
+        <p>Logout</p>
+      </MenuItem>
       
     </Menu>
   );
@@ -195,11 +218,6 @@ export const  PrimarySearchAppBar = () => {
             </Search>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="error">
-                  <LogoutRoundedIcon />
-                </Badge>
-              </IconButton>
               <IconButton
                 size="large"
                 edge="end"
@@ -208,8 +226,9 @@ export const  PrimarySearchAppBar = () => {
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
                 color="inherit"
-              >
-                <AccountCircle />
+              > 
+                { usuario.username }
+                <Avatar alt={ usuario.username.toUpperCase() } src={ avatarPath }/>
               </IconButton>
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

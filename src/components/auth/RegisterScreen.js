@@ -1,13 +1,16 @@
 import React from 'react'
 import Swal from 'sweetalert2'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { useForm } from '../../hooks/useForm';
 import { startRegister } from '../../actions/auth';
+import { uiOpenModal } from '../../actions/ui'
+import { ConfirmEmailModal } from '../ui/ConfirmEmailModal'
 
 export const RegisterScreen = () => {
 	
 	const dispatch = useDispatch();
+	const { modalOpen } = useSelector( state => state.ui );
 
 	const [ formRegisterValues, handleRegisterInputChange ] = useForm({
         username: '',
@@ -25,11 +28,12 @@ export const RegisterScreen = () => {
             return Swal.fire('Error', 'The passwords have to be the same', 'error');
         }
 
-        dispatch( startRegister( email, password1, username ) );
+        //dispatch( startRegister( email, password1, username ) );
+    	dispatch( uiOpenModal(modalOpen) );
     }
 
 	return (
-		<div>
+		<>
 			<h1>RegisterScreen</h1>
 			<form onSubmit={ handleRegister }>
 				<input 
@@ -70,6 +74,7 @@ export const RegisterScreen = () => {
 					value="Create Account"
 				/>
 			</form>
-		</div>
+			<ConfirmEmailModal />
+		</>
 	)
 }

@@ -96,7 +96,10 @@ export const AppRouter = () => {
 					/>
 
 					{/*Redireccionamiento de rutas inexistentes*/}
-					<Route path="/*" element={<RefodaScreen />}  />
+					<Route 
+						exact path="*" 
+						element={ <RefodaScreen /> }
+					/>
 				</Routes>
 			</div>
 		</BrowserRouter>		

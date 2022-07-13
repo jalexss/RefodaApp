@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { PrimarySearchAppBar } from '../ui/NavbarMUI'
 import { RecetasIndex } from '../receta/RecetasIndex'
 import { recetasStartLoading } from '../../actions/recetas'
-import { RecetaModal } from '../receta/RecetaModal'
+//import { RecetaModal } from '../receta/RecetaModal'
+import { RecetaCreateModal } from '../ui/RecetaCreateModal'
 import { uiOpenModal } from '../../actions/ui'
 //import { comentarioStartLoading } from '../../actions/comentarios'
 
@@ -53,7 +54,8 @@ export const Home = () => {
 				}
 			</div>
 
-			<RecetaModal />
+			{/*<RecetaModal />*/}
+			<RecetaCreateModal />
 
 		</>
 	)
