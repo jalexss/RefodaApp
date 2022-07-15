@@ -3,7 +3,9 @@
 */
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-//import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+//import { Navigate } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 /*
 	MUI -> Resource import
@@ -30,12 +32,17 @@ import { useForm } from '../../hooks/useForm';
 import { startLogin } from '../../actions/auth';
 import { theme } from '../../helpers/customThemeMUI';
 import { Copyright } from '../ui/Copyright'
+import { ImagePublicBackground } from '../ui/ImagePublicBackground'
 
 export const LoginScreen = () => {
 
+	const location = useLocation();
+
+	console.log(location.pathname)
+
 	const dispatch = useDispatch();
 	//const usuario = useSelector( state => state.auth );
-	//let navigate = useNavigate();
+	let navigate = useNavigate();
 
 	const [ formLoginValues, handleLoginInputChange ] = useForm({
 
@@ -80,6 +87,7 @@ export const LoginScreen = () => {
   		event.preventDefault();
 
   		console.log('HandleForgotPassword');
+  		navigate("../ResetPasswordScreen", { replace: true });
   	}
 
 	return (
@@ -90,21 +98,9 @@ export const LoginScreen = () => {
 				sx={{ height: '100vh' }}
 			>
 				<CssBaseline />
-				<Grid
-					item 
-					xs={false}
-					sm={4}
-					md={7}
-					sx={{
-						backgroundImage: 'url(https://source.unsplash.com/random)',
-						backgroundRepeat: 'no-repeat',
-           				backgroundColor: (t) =>
-              				t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            			backgroundSize: 'cover',
-            			backgroundPosition: 'center',
-					}}
-				>
-				</Grid>
+
+				<ImagePublicBackground />
+				
 				<Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
 					<Box 
 						sx={{
@@ -174,12 +170,12 @@ export const LoginScreen = () => {
 			                </Button>
 			                <Grid container >
 			                	<Grid item xs>
-			                		<Link onClick={HandleForgotPassword} variant="body2">
-			                			Forgot password?
+			                		<Link href="reset-password" variant="body2">
+			                			{"Forgot password?"}
 			                		</Link>
 			                	</Grid>
 			                	<Grid item xs>
-			                		<Link href="#" variant="body2">
+			                		<Link href="register" variant="body2">
 			                			{"Don't have an account? Sign up"}
 			                		</Link>
 			                	</Grid>

@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { useForm } from '../../hooks/useForm';
 import { startRegister } from '../../actions/auth';
-import { uiOpenModal } from '../../actions/ui'
-import { ConfirmEmailModal } from '../ui/ConfirmEmailModal'
 
 export const RegisterScreen = () => {
 	
@@ -29,7 +27,8 @@ export const RegisterScreen = () => {
         }
 
         //dispatch( startRegister( email, password1, username ) );
-    	dispatch( uiOpenModal(modalOpen) );
+    	//dispatch( uiOpenModal(modalOpen) );
+    	console.log('voila!');
     }
 
 	return (
@@ -74,7 +73,7 @@ export const RegisterScreen = () => {
 					value="Create Account"
 				/>
 			</form>
-			<ConfirmEmailModal />
+			
 		</>
 	)
 }

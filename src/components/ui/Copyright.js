@@ -4,9 +4,6 @@ import Link from '@mui/material/Link';
 
 const url = process.env.REACT_APP_URL;
 
-console.log(url)
-
-
 export const Copyright = (props) => {
 	return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
