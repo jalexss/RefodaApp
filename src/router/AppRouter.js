@@ -9,10 +9,11 @@ import { useDispatch, useSelector } from 'react-redux';
 //screens imports 
 import { Home } from '../components/refoda/Home'
 import { RefodaScreen } from '../components/refoda/RefodaScreen';
-import { ConfirmEmailScreen } from '../components/auth/ConfirmEmailScreen';
-import { LoginScreen } from '../components/auth/LoginScreen';
-import { RegisterScreen } from '../components/auth/RegisterScreen';
-import { ResetPasswordScreen } from '../components/auth/ResetPasswordScreen';
+import { ConfirmEmail } from '../components/auth/ConfirmEmail';
+import { RegisterForm } from '../components/auth/RegisterForm';
+import { ResetPassword } from '../components/auth/ResetPassword';
+import { AuthScreen } from '../components/auth/AuthScreen'
+import { LoginForm } from '../components/auth/LoginForm'
 import { startChecking } from '../actions/auth' 
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
@@ -52,7 +53,7 @@ export const AppRouter = () => {
 						path="/login" 
 						element={
 								<PublicRoute uid={uid} >
-									<LoginScreen />
+									<AuthScreen component={<LoginForm />} />
 								</PublicRoute>
 							}  
 						/>
@@ -61,7 +62,7 @@ export const AppRouter = () => {
 						path="/register" 
 						element={
 							<PublicRoute uid={uid} >
-								<RegisterScreen />
+								<AuthScreen component={<RegisterForm />}/>
 							</PublicRoute>
 						}  
 					/>
@@ -70,7 +71,7 @@ export const AppRouter = () => {
 						path="/reset-password" 
 						element={
 							<PublicRoute uid={uid} >
-								<ResetPasswordScreen />
+								<AuthScreen component={<ResetPassword />} />
 							</PublicRoute>
 						}  
 					/>
@@ -90,7 +91,7 @@ export const AppRouter = () => {
 						path="/confirm/:uid" 
 						element={
 							<PrivateRoute uid={uid} >
-								<ConfirmEmailScreen />
+								<AuthScreen component={<ConfirmEmail />} />
 							</PrivateRoute>
 						} 
 					/>

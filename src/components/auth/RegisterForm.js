@@ -1,14 +1,35 @@
+/*
+	REACT -> Resource import
+*/
 import React from 'react'
 import Swal from 'sweetalert2'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { useForm } from '../../hooks/useForm';
-import { startRegister } from '../../actions/auth';
+/*
+	MUI -> Resource import
+*/
+/*import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Button from '@mui/material/Button';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import IconButton from '@mui/material/IconButton';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';*/
 
-export const RegisterScreen = () => {
+/* 
+	CUSTOM-> Resource import
+*/
+import { useForm } from '../../hooks/useForm';
+//import { startRegister } from '../../actions/auth';
+
+export const RegisterForm = () => {
 	
 	const dispatch = useDispatch();
-	const { modalOpen } = useSelector( state => state.ui );
+	//const { modalOpen } = useSelector( state => state.ui );
 
 	const [ formRegisterValues, handleRegisterInputChange ] = useForm({
         username: '',
@@ -33,7 +54,7 @@ export const RegisterScreen = () => {
 
 	return (
 		<>
-			<h1>RegisterScreen</h1>
+			<h1>RegisterForm</h1>
 			<form onSubmit={ handleRegister }>
 				<input 
 					type="text"

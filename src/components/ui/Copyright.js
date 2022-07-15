@@ -2,7 +2,7 @@ import React from 'react'
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 
-const url = process.env.REACT_APP_URL;
+const url = `${process.env.REACT_APP_URL}/welcome`;
 
 export const Copyright = (props) => {
 	return (
